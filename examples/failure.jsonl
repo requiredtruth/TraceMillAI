@@ -1,0 +1,5 @@
+{"kind":"request","id":1}
+{"kind":"trigger","tool":"cache"}
+{"kind":"observation","value":"irrelevant"}
+{"kind":"crash","code":"E_STATE"}
+{"kind":"cleanup","ok":false}
