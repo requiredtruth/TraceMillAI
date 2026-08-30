@@ -6,7 +6,8 @@ command -v python3 >/dev/null 2>&1 || { echo "python3 is required" >&2; exit 1; 
 [ -x "$VENV/bin/python" ] || python3 -m venv "$VENV"
 "$VENV/bin/python" -m pip install --disable-pip-version-check --upgrade pip
 "$VENV/bin/python" -m pip install --disable-pip-version-check -e "$ROOT"
-(cd "$ROOT" && "$VENV/bin/python" -m compileall -q tracemillai tests && "$VENV/bin/python" -m unittest discover -s tests -v)
+(cd "$ROOT" && "$VENV/bin/python" -m compileall -q tracemillai tests examples/reproduce_failure.py project_gui.py && "$VENV/bin/python" -m unittest discover -s tests -v)
+"$ROOT/demo.sh"
 echo "TraceMillAI installation verified"
 
 # Desktop control-panel dependency. Kept in the project venv.

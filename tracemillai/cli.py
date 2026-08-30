@@ -11,9 +11,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--max-runs", type=int, default=500)
     parser.add_argument("--failing-code", type=int)
-    parser.add_argument("command", nargs=argparse.REMAINDER)
-    args = parser.parse_args(argv)
-    command = args.command[1:] if args.command and args.command[0] == "--" else args.command
+    raw_arguments = list(sys.argv[1:] if argv is None else argv)
+    try:
+        delimiter = raw_arguments.index("--")
+    except ValueError:
+        if any(argument in {"-h", "--help"} for argument in raw_arguments):
+            parser.parse_args(raw_arguments)
+        parser.error("provide the replay predicate after --")
+    args = parser.parse_args(raw_arguments[:delimiter])
+    command = raw_arguments[delimiter + 1 :]
     if not command:
         parser.error("provide the replay predicate after --")
     try:
