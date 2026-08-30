@@ -34,4 +34,4 @@ chmod +x install.sh run.sh
 
 ## Standard launcher
 
-`./run.sh` is the normal entry point. It runs `./install.sh` automatically when setup is missing, then opens the PySide6 control panel with live output and actions for the demo, tests, repair, and stop. Use `./cli.sh` for CLI-only operation.
+`./run.sh` is the normal entry point. It runs `./install.sh` automatically when setup is missing, then opens the PySide6 control panel with live output and actions for trace minimization, the demo, tests, repair, and stop. Leave the argument field blank for a deterministic bundled failure-reduction demo; it writes only to temporary storage and removes that storage afterward. Enter `TRACE.jsonl [options] -- PREDICATE` to analyze another trace. The GUI test action runs compilation and the real unit suite through `./test.sh`. Use `./cli.sh` for CLI-only operation.
